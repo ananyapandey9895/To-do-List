@@ -27,9 +27,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // For Event listeners
+    // Event listeners
     addTaskBtn.addEventListener('click', () => addTask(taskInput.value));
-    
+
     taskInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
             addTask(taskInput.value);
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!item) return;
 
         const id = parseInt(item.dataset.id);
-        
+
         if (e.target.classList.contains('delete-btn')) {
             todos = todos.filter(todo => todo.id !== id);
             saveTodos();
@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // For Render todos
+    // Render todos
     function renderTodos() {
         const filteredTodos = todos.filter(todo => {
             if (currentFilter === 'active') return !todo.completed;
@@ -91,13 +91,13 @@ document.addEventListener('DOMContentLoaded', () => {
         `).join('');
     }
 
-    // For Update task count
+    // Update task count
     function updateTaskCount() {
         const activeTasks = todos.filter(todo => !todo.completed).length;
         taskCount.textContent = `${activeTasks} task${activeTasks !== 1 ? 's' : ''} left`;
     }
 
-    // For Saving todos to localStorage
+    // Save todos to localStorage
     function saveTodos() {
         localStorage.setItem('todos', JSON.stringify(todos));
     }
